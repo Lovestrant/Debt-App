@@ -64,17 +64,6 @@ public class DbHelper extends SQLiteOpenHelper {
 
     }
 
-
-
-    public Cursor getdata(String phone){
-        SQLiteDatabase DB=this.getWritableDatabase();
-
-        Cursor cursor=DB.rawQuery("Select * from authentication where phonenumber=?", new String[] {phone});
-        return cursor;
-
-    }
-
-
     public Boolean checkUser(String phoneNumber, String password) {
         SQLiteDatabase DB=this.getWritableDatabase();
         Cursor cursor = DB.rawQuery("SELECT * from authentication where phonenumber = ? and password = ?",

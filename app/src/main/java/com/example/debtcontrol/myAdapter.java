@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +19,6 @@ import java.util.ArrayList;
 
 public class myAdapter extends RecyclerView.Adapter<myAdapter.myViewHolder>{
     ArrayList<Model> dataHolder;
-    Context context;
 
     public myAdapter(ArrayList<Model> dataHolder) {
         this.dataHolder = dataHolder;
@@ -36,10 +36,10 @@ public class myAdapter extends RecyclerView.Adapter<myAdapter.myViewHolder>{
 
     @Override
     public void onBindViewHolder(@NonNull myViewHolder holder, int position) {
+
         holder.names.setText(dataHolder.get(position).getName());
         holder.lists.setText(dataHolder.get(position).getItemList());
         holder.totals.setText(dataHolder.get(position).getTotal());
-
 
         //Object in Model
         Model s = dataHolder.get(position);
@@ -88,13 +88,13 @@ public class myAdapter extends RecyclerView.Adapter<myAdapter.myViewHolder>{
 
     @Override
     public int getItemCount() {
-       // ArrayList<Model> dataHolder = new ArrayList<>();
         return dataHolder.size();
     }
 
     class myViewHolder extends RecyclerView.ViewHolder {
 
-        TextView names,lists,totals,names1,lists1,totals1; Button delete,edit;
+        TextView names,lists,totals;
+        Button delete,edit;
 
         public myViewHolder(@NonNull View itemView) {
             super(itemView);

@@ -1,41 +1,3 @@
-//package com.example.debtcontrol;
-//
-//import androidx.appcompat.app.AppCompatActivity;
-//
-//import android.content.Intent;
-//import android.os.Bundle;
-//import android.view.View;
-//import android.widget.Button;
-//import android.widget.TextView;
-//
-//public class MainActivity extends AppCompatActivity {
-//
-//    TextView redirect;
-//    Button log;
-//
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_main);
-//        redirect = findViewById(R.id.sign_redirect);
-//        log = findViewById(R.id.btn_sign);
-//
-//        log.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                startActivity(new Intent(MainActivity.this, Home.class));
-//            }
-//        });
-//
-//        redirect.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                startActivity(new Intent(MainActivity.this, Register.class));
-//            }
-//        });
-//    }
-//}
-
 package com.example.debtcontrol;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -53,7 +15,8 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
     Button loginBtn; TextView resetBtn, registerBtn;
-    EditText phoneNumber, password;DbHelper DB;
+    EditText phoneNumber, password;
+    DbHelper DB;
     SharedPreferences pref;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,11 +28,13 @@ public class MainActivity extends AppCompatActivity {
         registerBtn = findViewById(R.id.sign_redirect);
         phoneNumber = findViewById(R.id.phone_number);
         password = findViewById(R.id.password_register);
+
         DB = new DbHelper(this);
 
 //        //check if session variable exists
 
         pref = getSharedPreferences("user_details",MODE_PRIVATE);
+
         if(pref.contains("phoneNumber")) {
             Toast.makeText(getApplicationContext(), "You still logged in", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(getApplicationContext(), Home.class);
@@ -103,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
                 //perform login operation
                 String phone = phoneNumber.getText().toString();
                 String pass = password.getText().toString();
+
                 if(!phone.equals("") && !pass.equals("")) {
                     Boolean CheckGetCredentials = DB.checkUser(phone,pass);
 
@@ -125,8 +91,15 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "Wrong Credentials", Toast.LENGTH_SHORT).show();
                     }
 
-                }else {
-                    Toast.makeText(getApplicationContext(), "Fill all fields", Toast.LENGTH_SHORT).show();
+                }
+                else {
+
+                    if (phone.isEmpty()) {
+                        phoneNumber.setError("provide phone number");
+                    }
+                    if (pass.isEmpty()){
+                        password.setError("Provide password");
+                    }
                 }
 
 

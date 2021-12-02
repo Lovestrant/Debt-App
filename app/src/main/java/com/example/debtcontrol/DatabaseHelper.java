@@ -78,21 +78,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public Cursor getdata(String sellerPhone) {
-        SQLiteDatabase DB = this.getWritableDatabase();
-
-        Cursor cursor = null;
-        if (DB != null) {
-           cursor = DB.rawQuery("Select * from DebtorsListTable where sellerPhone=?",
-                    new String[]{sellerPhone});
-
-        }
-        return cursor;
-
-
+        SQLiteDatabase DB = this.getReadableDatabase();
+       Cursor cursor=DB.rawQuery("Select * from DebtorsListTable  where sellerPhone=?",new String[]{sellerPhone});
+       return cursor;
     }
     public Cursor CheckData(String id) {
         SQLiteDatabase DB = this.getWritableDatabase();
-
         Cursor cursor = null;
         if (DB != null) {
             cursor = DB.rawQuery("Select * from DebtorsListTable where id=?",
@@ -100,8 +91,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         }
         return cursor;
-
-
     }
 
 }

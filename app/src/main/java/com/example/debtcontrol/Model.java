@@ -1,7 +1,7 @@
 package com.example.debtcontrol;
 
 public class Model {
-    private final String id;
+    private  String id;
     private String name;
     private String itemList;
     private String total;
@@ -13,6 +13,10 @@ public class Model {
         this.name = name;
         this.itemList = itemList;
         this.total = total;
+    }
+
+    public Model() {
+
     }
 
     public String getId() {
@@ -30,13 +34,6 @@ public class Model {
         this.name = name;
     }
 
-    public void setItemList(String itemList) {
-        this.itemList = itemList;
-    }
-
-    public void setTotal(String total) {
-        this.total = total;
-    }
 
     public String getTotal() {
         return total;

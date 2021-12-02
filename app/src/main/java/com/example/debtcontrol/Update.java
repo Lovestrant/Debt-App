@@ -25,6 +25,7 @@ public class Update extends AppCompatActivity {
         phoneNum = findViewById(R.id.phoneNumber);
         password = findViewById(R.id.password);
         confirmPassword = findViewById(R.id.passConfirm);
+
         Db = new DbHelper(this);
 
         //intent to index activity
@@ -43,12 +44,23 @@ public class Update extends AppCompatActivity {
             public void onClick(View view) {
                 String phoneNumbr = phoneNum.getText().toString();
                 String Security = securityKey.getText().toString();
-                String pass = securityKey.getText().toString();
-                String passConfirm = securityKey.getText().toString();
+                String pass = password.getText().toString();
+                String passConfirm =confirmPassword .getText().toString();
 
-                if(phoneNumbr.equals("") || Security.equals("") || pass.equals("") || passConfirm.equals("")){
-                    Toast.makeText(getApplicationContext(), "Fill all the fields", Toast.LENGTH_SHORT).show();
-                } else {
+                if (phoneNumbr.isEmpty()) {
+                    phoneNum.setError("provide phone number");
+                }
+                if (Security.isEmpty()){
+                    securityKey.setError("Provide security key");
+                }
+                if (pass.isEmpty()){
+                    password.setError("Provide password");
+                }
+                if (passConfirm.isEmpty()) {
+                    confirmPassword.setError("Confirm password");
+                }
+
+                else {
                     if(pass.equals(passConfirm)) {
                         //check if security key is correct
                         //update credentials

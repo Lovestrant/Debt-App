@@ -20,74 +20,44 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 public class Records extends AppCompatActivity {
-    Button Main; DatabaseHelper DB;
-    SharedPreferences prf; ArrayList<ColorSpace.Model> dataHolder; RecyclerView recyclerView;
-
-    ArrayList<String> name,list,total,myId;
-    //CustomAdapter customAdapter;
-
+    DatabaseHelper DB;
+    SharedPreferences prf;
+    RecyclerView recyclerView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_records);
 
-        Main = findViewById(R.id.main);
         recyclerView = findViewById(R.id.RecycleView);
-        Main.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Records.this, Home.class);
-                startActivity(intent);
-            }
-        });
         //get the object of the Database helper
         DB = new DatabaseHelper(this);
 
         prf = getSharedPreferences("user_details",MODE_PRIVATE);
         String phoneNumber = prf.getString("phoneNumber",null);
 
+        ArrayList<Model> dataHolder = new ArrayList<>();
+
         Cursor checkData = DB.getdata(phoneNumber);
-
         if(checkData.getCount() == 0) {
-            Toast.makeText(getApplicationContext(), "No data Yet in database", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "No data in database", Toast.LENGTH_SHORT).show();
         }else {
+            Model obj;
             while (checkData.moveToNext()) {
-                String id = checkData.getString(0);
-                String Name = checkData.getString(2);
-                String List = checkData.getString(3);
+               String id = checkData.getString(0);
+               String  Name = checkData.getString(2);
+               String  List = checkData.getString(3);
                 String Total = checkData.getString(4);
-
-//                name = new ArrayList<>();
-//                list = new ArrayList<>();
-//                total = new ArrayList<>();
-//                myId = new ArrayList<>();
-//
-//                name.add(Name);
-//                list.add(List);
-//                myId.add(id);
-//                total.add(Total);
-
-
-//                customAdapter = new CustomAdapter(editDebtors.this,name,list,total,myId);
-//
-//                recyclerView.setAdapter(customAdapter);
-//                recyclerView.setLayoutManager(new LinearLayoutManager(editDebtors.this));
-//
-//
-
-                Model obj = new Model(id, Name, List, Total);
-
-                ArrayList<Model> dataHolder = new ArrayList<>();
+                obj = new Model(id, Name, List, Total);
                 dataHolder.add(obj);
+            }
+
                 LinearLayoutManager llm = new LinearLayoutManager(this);
                 llm.setOrientation(RecyclerView.VERTICAL);
                 recyclerView.setLayoutManager(llm);
                 myAdapter adapter = new myAdapter(dataHolder);
                 recyclerView.setAdapter(adapter);
-            }
+
 
         }
-
-
     }
 }

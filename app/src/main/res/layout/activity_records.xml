@@ -1,31 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="15dp"
     tools:context=".Records"
     android:orientation="vertical">
 
-    <Button
-        android:id="@+id/main"
+
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="10dp"
-        android:text="Main" />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/txt"
         android:text="Your Debtors:"
-        android:textSize="20dp" />
+        android:textSize="30sp" />
 
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/RecycleView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/txt"
             android:scrollbars="vertical" />
 
 
@@ -33,4 +30,4 @@
 
 
 
-</LinearLayout>
+</RelativeLayout>

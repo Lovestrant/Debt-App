@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".reset"
+    tools:context=".Update"
     android:orientation="vertical">
 
 
@@ -22,6 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:hint="Enter security Key"
+        android:inputType="number"
         android:layout_margin="10dp"
         android:textSize="20dp"
         />
@@ -39,6 +40,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:hint="Set new Password"
+        android:inputType="numberPassword"
         android:layout_margin="10dp"
         android:textSize="20dp"
         />
@@ -47,23 +49,24 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:hint="Confirm New Password"
+        android:inputType="numberPassword"
         android:layout_margin="10dp"
         android:textSize="20dp"
         />
+
     <Button
         android:id="@+id/resetBtn"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Reset"
-        android:layout_marginLeft="40dp"
-        android:textSize="25dp"
-        />
+        android:textSize="20sp" />
+
     <Button
         android:id="@+id/backToLogin"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:backgroundTint="#FF4500"
         android:text="Back to Login"
-        android:layout_marginLeft="40dp"
         android:layout_marginTop="23dp"
         android:textSize="20dp"
         />

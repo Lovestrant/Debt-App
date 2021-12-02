@@ -12,32 +12,25 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 public class AddDebtor extends AppCompatActivity {
-    Button sumAll; EditText name,Total,list; DatabaseHelper DB;
+    Button add;
+    EditText name,Total,list;
+    DatabaseHelper DB;
     SharedPreferences prf;
-    ImageView backMain;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_debtor);
 
-        backMain = findViewById(R.id.main);
-        sumAll = findViewById(R.id.btn_add);
+        add= findViewById(R.id.btn_add);
         Total = findViewById(R.id.add_amount);
         list = findViewById(R.id.add_items);
         name = findViewById(R.id.add_name);
+
         DB = new DatabaseHelper(this);
 
-        backMain.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), Home.class);
-                startActivity(intent);
-            }
-        });
 
 
-        sumAll.setOnClickListener(new View.OnClickListener() {
+        add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String Name = name.getText().toString();
@@ -49,13 +42,24 @@ public class AddDebtor extends AppCompatActivity {
                 prf = getSharedPreferences("user_details",MODE_PRIVATE);
                 String sellerPhone =  prf.getString("phoneNumber",null);
 
-
-                if(Name == null || SumOfItems == null || ItemList == null) {
-                    Toast.makeText(getApplicationContext(), "Fill all Fields", Toast.LENGTH_SHORT).show();
-                } else {
+                if (Name.isEmpty()){
+                    name.setError("Enter name");
+                }
+                if (ItemList.isEmpty()){
+                    list.setError("Provide items");
+                }
+                if (SumOfItems.isEmpty()){
+                    Total.setError("Total cannot be null");
+                }
+                else {
                     Boolean checkInsertedData = DB.insertUserData(sellerPhone, Name, ItemList, SumOfItems);
                     if(checkInsertedData == true) {
                         Toast.makeText(getApplicationContext(), "Record Inserted", Toast.LENGTH_SHORT).show();
+                        name.setText("");
+                        list.setText("");
+                        Total.setText("");
+                        Intent intent=new Intent(getApplicationContext(),Records.class);
+                        startActivity(intent);
                     }else {
                         Toast.makeText(getApplicationContext(), " Insertion Failed...", Toast.LENGTH_SHORT).show();
                     }

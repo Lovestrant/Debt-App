@@ -17,7 +17,10 @@ public class Edit extends AppCompatActivity {
     String name;
     EditText list,DebtorName;
     EditText total;DatabaseHelper DB;
-    Button edit; TextView ToMain;
+    Button edit;
+    String Name;
+    String List;
+    String Total;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,7 +33,7 @@ public class Edit extends AppCompatActivity {
         list = findViewById(R.id.mylist);
         total = findViewById(R.id.mytotal);
         edit = findViewById(R.id.edit);
-        ToMain = findViewById(R.id.toMain);
+
 
 
 
@@ -43,13 +46,17 @@ public class Edit extends AppCompatActivity {
         Cursor cursor = DB.CheckData(id);
         if(cursor.getCount() > 0) {
             while(cursor.moveToNext()) {
-                String name = cursor.getString(2);
-                String list = cursor.getString(3);
-                String total = cursor.getString(4);
+
+                 Name = cursor.getString(2);
+                 List = cursor.getString(3);
+                 Total = cursor.getString(4);
                 //Map data to textViews
-                displayName.setText(name);
-                displayList.setText(list);
-                displayTotal.setText(total);
+                displayName.setText(Name);
+                displayList.setText(List);
+                displayTotal.setText(Total);
+
+                list.setText(List);
+                DebtorName.setText(Name);
 
             }
         }
@@ -61,15 +68,18 @@ public class Edit extends AppCompatActivity {
                 SharedPreferences prf = getSharedPreferences("user_details",MODE_PRIVATE);
                 String phone = prf.getString("phoneNumber",null);
                 //Get Input values
-                String Total = total.getText().toString();
-                String List = list.getText().toString();
-                String NName = DebtorName.getText().toString();
+                List=list.getText().toString();
+                 Total = total.getText().toString();
 
                 //Logic to Edit
-                if(Total.equals(null) || List.equals(null)) {
-                    Toast.makeText(getApplicationContext(), "Fill all the fields", Toast.LENGTH_SHORT).show();
-                }else{
-                    Boolean updateUserData = DB.updateUserData(id,phone,NName,List,Total);
+                if (Total.isEmpty()){
+                    total.setError("Total amount is required");
+                    total.requestFocus();
+                    return;
+                }
+                else
+                {
+                    Boolean updateUserData = DB.updateUserData(id,phone,Name,List,Total);
                     if(updateUserData == true) {
                         Toast.makeText(getApplicationContext(), "Edit Success", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(getApplicationContext(), Records.class);
@@ -80,15 +90,6 @@ public class Edit extends AppCompatActivity {
                 }
 
 
-            }
-        });
-
-        //direct user To Main
-        ToMain.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), Home.class);
-                startActivity(intent);
             }
         });
 

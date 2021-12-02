@@ -28,6 +28,7 @@ public class Register extends AppCompatActivity {
         password = findViewById(R.id.password_register);
         passwordConfirm = findViewById(R.id.password_confirm);
         securityKeyConfirm = findViewById(R.id.confirm_key);
+
         DB = new DbHelper(this);
 
         //direct to login page
@@ -50,9 +51,22 @@ public class Register extends AppCompatActivity {
                 String passConfirm = passwordConfirm.getText().toString();
                 String phone = phoneNumber.getText().toString();
 
-                if(pass == null && security == null && securityConfirm == null && passConfirm == null && phone == null) {
-                    Toast.makeText(getApplicationContext(), "Fill all the fields", Toast.LENGTH_SHORT).show();
-                } else if(!pass.equals(passConfirm)){
+                if (phone.isEmpty()) {
+                    phoneNumber.setError("provide phone number");
+                }
+                if (security.isEmpty()){
+                    securityKey.setError("Provide security key");
+                }
+                if (securityConfirm.isEmpty()) {
+                    securityKeyConfirm.setError("Confirm security key");
+                }
+                if (pass.isEmpty()){
+                    password.setError("Provide password");
+                }
+                if (passConfirm.isEmpty()) {
+                    passwordConfirm.setError("Confirm password");
+                }
+                else if(!pass.equals(passConfirm)){
                     Toast.makeText(getApplicationContext(), "Password and its confirmation must match", Toast.LENGTH_SHORT).show();
                 }else if(!security.equals(securityConfirm)) {
                     Toast.makeText(getApplicationContext(), "Security Key and its confirmation must match", Toast.LENGTH_SHORT).show();
@@ -68,7 +82,6 @@ public class Register extends AppCompatActivity {
                         phoneNumber.setText("");
                         password.setText("");
                         passwordConfirm.setText("");
-
                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                         startActivity(intent);
                     }else{
