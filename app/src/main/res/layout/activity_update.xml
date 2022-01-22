@@ -59,6 +59,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Reset"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
         android:textSize="20sp" />
 
     <Button
@@ -68,6 +70,8 @@
         android:backgroundTint="#FF4500"
         android:text="Back to Login"
         android:layout_marginTop="23dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
         android:textSize="20dp"
         />
 

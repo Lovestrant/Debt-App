@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Lovestrant/AndroidStudioProjects/Debt-App/app/src/main/res/layout/activity_home.xml" value="0.1743659420289855" />
+        <entry key="..\:/Users/Lovestrant/AndroidStudioProjects/Debt-App/app/src/main/res/layout/activity_main.xml" value="0.15" />
+        <entry key="..\:/Users/Lovestrant/AndroidStudioProjects/Debt-App/app/src/main/res/layout/activity_update.xml" value="0.1328125" />
         <entry key="..\:/Users/Lovestrant/AndroidStudioProjects/DebtControl-1/app/src/main/res/layout/activity_add_debtor.xml" value="0.22" />
         <entry key="..\:/Users/Lovestrant/AndroidStudioProjects/DebtControl-1/app/src/main/res/layout/activity_edit.xml" value="0.22" />
         <entry key="..\:/Users/Lovestrant/AndroidStudioProjects/DebtControl-1/app/src/main/res/layout/activity_home.xml" value="0.17916666666666667" />
