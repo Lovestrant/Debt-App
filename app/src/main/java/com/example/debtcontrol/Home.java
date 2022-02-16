@@ -12,7 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class Home extends AppCompatActivity {
-   TextView displaySessionvar, logout;
+   TextView displaySessionVar, logout;
     SharedPreferences prf;
     ImageView addDebtors, EditDebtors,showDebtors,img5;
 
@@ -26,11 +26,11 @@ public class Home extends AppCompatActivity {
         showDebtors = findViewById(R.id.imageView);
         img5 = findViewById(R.id.imageView5);
         logout = findViewById(R.id.logout);
-        displaySessionvar = findViewById(R.id.DisplaySession);
+        displaySessionVar = findViewById(R.id.DisplaySession);
 
         prf = getSharedPreferences("user_details",MODE_PRIVATE);
 
-        displaySessionvar.setText(" Hi Your accId is: "+prf.getString("phoneNumber",null));
+        displaySessionVar.setText(" Hi Your accId is: "+prf.getString("phoneNumber",null));
 
         addDebtors.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,9 +69,8 @@ public class Home extends AppCompatActivity {
             public void onClick(View view) {
                 SharedPreferences.Editor editor = prf.edit();
                 editor.clear();
-                editor.commit();
+                editor.apply();
                 //Direct To Main Activity
-
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
                 Toast.makeText(getApplicationContext(), "Log out success", Toast.LENGTH_SHORT).show();

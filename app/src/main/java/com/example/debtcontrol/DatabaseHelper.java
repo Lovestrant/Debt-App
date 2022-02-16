@@ -22,7 +22,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
-    //method to insert dta to Db
+    //method to insert data to Db
     public Boolean insertUserData(String sellerPhone, String name, String itemList, String Total) {
         SQLiteDatabase DB = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -77,7 +77,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    public Cursor getdata(String sellerPhone) {
+    public Cursor getData(String sellerPhone) {
         SQLiteDatabase DB = this.getReadableDatabase();
        Cursor cursor=DB.rawQuery("Select * from DebtorsListTable  where sellerPhone=?",new String[]{sellerPhone});
        return cursor;
@@ -92,5 +92,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         return cursor;
     }
-
+    public int getDebt(String sellerPhone){
+        int debt=0;
+        SQLiteDatabase db=this.getReadableDatabase();
+        Cursor cursor=db.rawQuery("SELECT sum(Total) from DebtorsListTable WHERE sellerPhone=?",new String[]{sellerPhone});
+        if (cursor.moveToFirst()) debt = cursor.getInt(0);
+        cursor.close();
+        db.close();
+        return debt;
+    }
 }

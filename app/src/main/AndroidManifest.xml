@@ -4,17 +4,14 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+       android:icon="@drawable/debt"
         android:label="Debt App"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/debt"
         android:supportsRtl="true"
         android:theme="@style/Theme.DebtControl" >
         <activity
             android:name=".Update"
             android:exported="false" />
-        <activity
-            android:name=".RemoveDebtor"
-            android:exported="true" />
         <activity
             android:name=".AddDebtor"
             android:exported="true" />

@@ -101,8 +101,8 @@ public class myAdapter extends RecyclerView.Adapter<myAdapter.myViewHolder>{
             lists = (TextView)itemView.findViewById(R.id.list);
             totals = (TextView)itemView.findViewById(R.id.total);
 
-         delete = (Button) itemView.findViewById(R.id.Delete);
-         edit = (Button) itemView.findViewById(R.id.Edit);
+            delete = (Button) itemView.findViewById(R.id.Delete);
+            edit = (Button) itemView.findViewById(R.id.Edit);
 
         }
     }
