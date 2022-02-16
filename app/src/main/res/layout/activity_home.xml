@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:fillViewport="true">
 
-            <RelativeLayout
+        <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
@@ -19,7 +19,6 @@
                 android:id="@+id/textView2"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:background="#ffff"
                 android:layout_marginTop="10dp"
                 android:gravity="center"
                 android:text="Welcome to Debt Records Control!"
