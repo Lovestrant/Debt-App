@@ -73,6 +73,7 @@ public class Home extends AppCompatActivity {
                 //Direct To Main Activity
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
+                finish();
                 Toast.makeText(getApplicationContext(), "Log out success", Toast.LENGTH_SHORT).show();
             }
         });
